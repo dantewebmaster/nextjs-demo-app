@@ -23,12 +23,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { slug: string };
 }>) {
-  console.log(params.slug);
   return (
     <html lang="en">
       <body
