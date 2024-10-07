@@ -1,8 +1,8 @@
-import { Post } from "@/types/post";
+import type { IPost } from "@/types/post";
 
 export default async function PostPage({ params }: { params: { id: string } }) {
   const res = await fetch(`${process.env.API}/posts/${params.id}`);
-  const post: Post = await res.json();
+  const post: IPost = await res.json();
 
   return (
     <article>

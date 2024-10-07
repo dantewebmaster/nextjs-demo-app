@@ -1,7 +1,7 @@
-import { Post } from "@/types/post";
+import type { IPost } from "@/types/post";
 import Link from "next/link";
 
-export default async function Blog() {
+export default async function BlogPage() {
   // get static props
   // const res = await fetch(`${process.env.API}/posts`);
   // const posts: Post[] = await res.json();
@@ -10,7 +10,7 @@ export default async function Blog() {
   const res = await fetch(`${process.env.API}/posts`, {
     cache: "no-store",
   });
-  const posts: Post[] = await res.json();
+  const posts: IPost[] = await res.json();
 
   return (
     <div>
@@ -18,8 +18,13 @@ export default async function Blog() {
       <ul>
         {posts.map((post) => (
           <li key={post.id} className="border border-gray-500 p-4 mb-2">
-            <Link className="hover:underline" href={`/blog/${post.id}`}>
-              {post.title}
+            <h2 className="text-2xl">{post.title}</h2>
+            <p className="my-3">{post.body}</p>
+            <Link
+              className="hover:underline text-xl mb-2 border p-2 rounded-md"
+              href={`/blog/${post.id}`}
+            >
+              ver post
             </Link>
           </li>
         ))}
