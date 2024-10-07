@@ -6,6 +6,7 @@ import { formatMoney } from "@/lib/utils/format";
 export default async function ProductsPage() {
   const res = await fetch(`${process.env.PRODUCTS_API}/products`, {
     cache: "no-store",
+    // next: { revalidate: 60 },
   });
 
   const products: IProduct[] = await res.json();
