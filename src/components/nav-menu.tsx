@@ -4,32 +4,46 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
+const NAV_MENUS = [
+  {
+    id: 1,
+    title: "Home",
+    href: "/",
+  },
+  {
+    id: 2,
+    title: "Blog",
+    href: "/blog",
+  },
+  {
+    id: 3,
+    title: "Products",
+    href: "/products",
+  },
+];
+
 export const NavMenu = () => {
   const pathname = usePathname();
 
   return (
     <nav className="w-full sticky top-0 bg-black">
       <ul className="flex gap-4 justify-center p-4 text-xl">
-        <li>
-          <Link
-            className={`font-bold hover:underline ${
-              pathname === "/" ? "underline" : ""
-            }`}
-            href="/"
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={`font-bold hover:underline ${
-              pathname.includes("/blog") ? "underline" : ""
-            }`}
-            href="/blog"
-          >
-            Blog
-          </Link>
-        </li>
+        {NAV_MENUS.map((menu) => {
+          const isNavActive = pathname === menu.href;
+
+          return (
+            <li key={menu.title}>
+              <Link
+                className={`font-bold hover:underline ${
+                  isNavActive ? "underline" : ""
+                }`}
+                href={menu.href}
+              >
+                {menu.title}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
       <hr className="bg-gray-400 h-px w-full border-0" />
     </nav>
