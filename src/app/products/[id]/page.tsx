@@ -6,7 +6,9 @@ export default async function ProductPage({
 }: {
   params: { id: string };
 }) {
-  const res = await fetch(`${process.env.PRODUCTS_API}/products/${params.id}`);
+  const res = await fetch(`${process.env.PRODUCTS_API}/products/${params.id}`, {
+    cache: "no-store",
+  });
   const product: IProduct = await res.json();
 
   return (

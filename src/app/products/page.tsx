@@ -16,9 +16,11 @@ export default async function ProductsPage() {
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {products.map((product) => (
           <li key={product.id} className="border border-gray-500 p-4 mb-2">
-            <h2 className="text-2xl">{product.name}</h2>
+            <h2 className="text-2xl font-bold">{product.name}</h2>
             <p className="my-3">{product.description}</p>
-            <p className="font-bold mb-4">{formatMoney(product.price)}</p>
+            <p className="font-bold mb-4 text-green-500">
+              {formatMoney(product.price)}
+            </p>
             <Link
               className="hover:underline text-xl mb-2 border p-2 rounded-md"
               href={`/products/${product.id}`}

@@ -29,13 +29,16 @@ export const NavMenu = () => {
     <nav className="w-full sticky top-0 bg-black">
       <ul className="flex gap-4 justify-center p-4 text-xl">
         {NAV_MENUS.map((menu) => {
-          const isNavActive = pathname === menu.href;
+          const isCurrentMenuActive =
+            menu.href === "/"
+              ? pathname === "/"
+              : pathname.startsWith(menu.href);
 
           return (
             <li key={menu.title}>
               <Link
                 className={`font-bold hover:underline ${
-                  isNavActive ? "underline" : ""
+                  isCurrentMenuActive ? "underline" : ""
                 }`}
                 href={menu.href}
               >
